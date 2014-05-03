@@ -75,8 +75,8 @@ class Chaser(Enemy):
         self.color = pygame.Color(255,0,0)
         self.radius = 15
     def tick(self):
-        self.x += (1/60.0) * self.speed * math.cos(math.atan2(self.gs.player.x-self.x,self.gs.player.y-self.y))
-        self.y -= (1/60.0) * self.speed * math.sin(math.atan2(self.gs.player.x-self.x,self.gs.player.y-self.y))
+        self.x -= (1/60.0) * self.speed * math.cos(math.atan2(self.gs.player.x-self.x,self.gs.player.y-self.y))
+        self.y += (1/60.0) * self.speed * math.sin(math.atan2(self.gs.player.x-self.x,self.gs.player.y-self.y))
 class Sweeper(Enemy):
     def __init__(self, gamespace):
         Enemy.__init__(self,gamespace)
@@ -114,10 +114,10 @@ class GameSpace:
         self.clock = pygame.time.Clock()
         self.player = Player(self)
         self.enemies = []
-        self.enemies.append(Enemy(self))
+        #self.enemies.append(Enemy(self))
         self.enemies.append(Chaser(self))
-        self.enemies.append(Sweeper(self))
-        self.enemies.append(Expander(self))
+        #self.enemies.append(Sweeper(self))
+        #self.enemies.append(Expander(self))
         self.bullettes = []
         while 1:
             self.screen.fill(self.black)
