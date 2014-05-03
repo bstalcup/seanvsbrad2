@@ -72,18 +72,23 @@ class Enemy:
 class Chaser(Enemy):
     def __init__(self, gamespace):
         Enemy.__init__(self,gamespace)
+        self.color = pygame.Color(255,0,0)
+        self.radius = 15
     def tick(self):
-        self.x -= (1/60.0) * self.speed
+        self.x += (1/60.0) * self.speed * math.cos(math.atan2(self.gs.player.x-self.x,self.gs.player.y-self.y))
+        self.y -= (1/60.0) * self.speed * math.sin(math.atan2(self.gs.player.x-self.x,self.gs.player.y-self.y))
 class Sweeper(Enemy):
     def __init__(self, gamespace):
         Enemy.__init__(self,gamespace)
+        self.color = pygame.Color(0,0,255)
     def tick(self):
         self.y += (1/60.0) * self.speed
 class Expander(Enemy):
     def __init__(self, gamespace):
         Enemy.__init__(self,gamespace)
+        self.color = pygame.Color(0,255,0)
     def tick(self):
-        self.y -= (1/60.0) * self.speed
+        self.radius += 1
 class Bullet:
     def __init__(self,x,y,dir,gamespace):
         self.gs = gamespace
